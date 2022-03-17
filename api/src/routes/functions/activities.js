@@ -24,8 +24,15 @@ const addActivity = (idActivity, idCountry) => {
     })
 }
 
+const getAllActivities = () => {
+    return Activity.findAll()
+    .then(activities => activities)
+    .catch(e => e)
+}
+
 
 module.exports = {
     postActivity,
     addActivity,
+    getAllActivities,
 };

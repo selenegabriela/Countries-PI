@@ -13,20 +13,26 @@ router.get('/', (req, res, next) => {
 
     if(name){
         getCountriesByName(name)
-        .then(countries => res.json(countries))
+        .then(countries => {
+            if(countries.length) res.status(200).json(countries)
+            else res.status(404).json('country not found')
+        })
         .catch(e => next(e));
     } else {
         getAllDbCountries()
-        .then(countries => res.json(countries))
+        .then(countries => res.status(200).json(countries))
         .catch(e => next(e));
     }
 });
 
 router.get('/:id', (req, res, next) => {
     const { id } = req.params;
-
+    
     getCountryById(id)
-    .then(country => res.json(country))
+    .then(country => {
+        if(country) res.status(200).json(country)
+        else res.status(404).json('country not found');
+    })
     .catch(e => next(e));
 });
 
