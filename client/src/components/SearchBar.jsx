@@ -13,13 +13,14 @@ export default function SearchBar(){
     }
 
     const hancleClick = (e) => {
-        e.preventDefault()
-        dispatch(getCountriesByName(name))
+        e.preventDefault();
+        dispatch(getCountriesByName(name));
+        setName('');
     }
 
     return(
         <div>
-            <input type="text" placeholder='Buscar país...' onChange={e => handleChange(e)}/>
+            <input value={name} type="text" placeholder='Buscar país...' onChange={e => handleChange(e)}/>
             <button onClick={e => hancleClick(e)}>Buscar</button>
         </div>
     )

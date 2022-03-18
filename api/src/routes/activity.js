@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
     getAllActivities()
     .then(activities => {
         if(activities.length) res.status(200).json(activities);
-        else res.status(404).json('sin actividades agregadas');
+        else res.json('Sin actividades agregadas');
     })
     .catch(e => next(e));
 })
@@ -28,7 +28,7 @@ router.post('/', (req, res, next) => {
         .then(msg => res.status(200).json(msg))
         .catch(e => next(e));
     } else {
-        res.json('Debe proporcionar un país');
+        res.json({msg: 'Debe proporcionar un país'});
     }
 });
 

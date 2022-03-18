@@ -7,9 +7,11 @@ export default function PagesNumber(props) {
 
     const allPages = [];
     
-    for(let i = 1; i <= Math.ceil(countriesLength / countriesPerPage); i++){
+    for(let i = 1; i <= Math.ceil(((countriesLength-9) / countriesPerPage)) + 1; i++){
         allPages.push(i)
     }
+
+    
 
     return (<ul>
     {

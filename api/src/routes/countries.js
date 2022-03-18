@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
         getCountriesByName(name)
         .then(countries => {
             if(countries.length) res.status(200).json(countries)
-            else res.status(404).json('country not found')
+            else res.json('País no encontrado')
         })
         .catch(e => next(e));
     } else {
@@ -31,7 +31,7 @@ router.get('/:id', (req, res, next) => {
     getCountryById(id)
     .then(country => {
         if(country) res.status(200).json(country)
-        else res.status(404).json('country not found');
+        else res.status(404).json('País no encontrado');
     })
     .catch(e => next(e));
 });
