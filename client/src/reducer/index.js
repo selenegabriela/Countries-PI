@@ -1,8 +1,10 @@
-import { GET_ALL_COUNTRIES, GET_ALL_ACTIVITIES, GET_COUNTRIES_BY_NAME, ALPHABETICAL_ORDER, POPULATION_ORDER, CONTINENT_FILTER } from '../actions';
+import { GET_ALL_COUNTRIES, GET_ALL_ACTIVITIES, GET_COUNTRIES_BY_NAME, ALPHABETICAL_ORDER, POPULATION_ORDER, CONTINENT_FILTER, ACTIVITIES_FILTER, COUNTRIES_ACTIVITIES, CREATE_ACTIVITY } from '../actions';
 const initialState = {
     countries: [],
     activities: [],
     auxiliarCountries: [],
+    orderedCountries: [],
+
 }
 
 export default function rootReducer(state = initialState, action){
@@ -24,7 +26,8 @@ export default function rootReducer(state = initialState, action){
                 countries: action.payload
             }
         case ALPHABETICAL_ORDER:
-            const alphabeticOrderCountries = state.countries.sort((a, b) => {
+            const alphabeticOrderCountries = Array.isArray(state.countries) 
+                ? state.countries.sort((a, b) => {
                 const firstElement = a.name.toLowerCase();
                 const secondElement = b.name.toLowerCase();
 
@@ -37,13 +40,14 @@ export default function rootReducer(state = initialState, action){
                     if(firstElement < secondElement) return 1;
                     else return 0;
                 }
-            })
+            }) : []
             return{
                 ...state,
-                countries: alphabeticOrderCountries
+                countries: alphabeticOrderCountries,
             }
         case POPULATION_ORDER:
-            const populationOrderCountries = state.countries.sort((a, b) => {
+            const populationOrderCountries = Array.isArray(state.countries) 
+                ? state.countries.sort((a, b) => {
                 const elementOne = a.population;
                 const elementTwo = b.population;
 
@@ -56,7 +60,7 @@ export default function rootReducer(state = initialState, action){
                     if(elementOne < elementTwo) return 1;
                     else return 0;       
                 }
-            })
+            }) : [];
             return {
                 ...state,
                 countries: populationOrderCountries,
@@ -70,7 +74,35 @@ export default function rootReducer(state = initialState, action){
                 ...state,
                 countries: filterContinentCountries,
             }
+        case ACTIVITIES_FILTER:
+            const everyCountry = state.auxiliarCountries;
+            const filterActivitiesCountriesOne = everyCountry.filter(country => country.activities.length)
+            let filterActivitiesCountriesTwo = [];
+            if(action.payload === 'All'){
+                filterActivitiesCountriesTwo = [...everyCountry]
+            } else {
+                filterActivitiesCountriesOne.forEach(country => {
+                    country.activities.forEach(activity => {
+                        if(activity.name === action.payload) filterActivitiesCountriesTwo.push(country)
+                    })
+                })
+            }
+            return {
+                ...state, 
+                countries: filterActivitiesCountriesTwo,
+            }
+        case COUNTRIES_ACTIVITIES:
+            console.log('hey')
+            return {
+                ...state,
+                orderedCountries: action.payload,
+            }
+        case CREATE_ACTIVITY:
+            return {
+                ...state,
+            }
         default:
+            console.log('heydef')
             return {...state}
     }
 }

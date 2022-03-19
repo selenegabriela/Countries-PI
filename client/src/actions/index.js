@@ -5,6 +5,9 @@ export const GET_COUNTRIES_BY_NAME = 'GET_COUNTRIES_BY_NAME';
 export const ALPHABETICAL_ORDER = 'ALPHABETICAL_ORDER';
 export const POPULATION_ORDER = 'POPULATION_ORDER';
 export const CONTINENT_FILTER = 'CONTINENT_FILTER';
+export const ACTIVITIES_FILTER = 'ACTIVITIES_FILTER';
+export const COUNTRIES_ACTIVITIES = 'COUNTRIES_ACTIVITIES';
+export const CREATE_ACTIVITY = 'CREATE_ACTIVITY';
 
 export const getAllCountries = () => {
     return function(dispatch){
@@ -35,6 +38,12 @@ export const getCountriesByName = (name) => {
     }
 }
 
+export const countriesActivities = () => {
+    return function(dispatch){
+        return axios.get('http://localhost:3001/api/countries/activitiesCountry')
+        .then(countries => dispatch({type: COUNTRIES_ACTIVITIES, payload: countries.data}))
+    }
+}
 export const alphabeticalOrder = payload => {
     return {type: ALPHABETICAL_ORDER, payload}
 }
@@ -45,4 +54,16 @@ export const populationOrder = payload => {
 
 export const continentFilter = payload => {
     return {type: CONTINENT_FILTER, payload}
+}
+
+export const activitiesFilter = payload => {
+    return {type: ACTIVITIES_FILTER, payload}
+}
+
+
+export const createNewActivity = payload => {
+    return function(dispatch){
+        return axios.post('http://localhost:3001/api/activity/', payload)
+        .then(msg => dispatch({type: CREATE_ACTIVITY, payload: msg.data }))
+    }
 }

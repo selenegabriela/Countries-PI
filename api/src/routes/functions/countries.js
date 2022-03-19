@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { Op } = require('sequelize');
+const { Op, Sequelize } = require('sequelize');
 const { Country, Activity } = require('../../db');
 
 const getAllCountries = () => {
@@ -21,6 +21,7 @@ const getAllCountries = () => {
         });
     }));  
 }
+
 
 const getAllDbCountries = () => {
     
@@ -59,9 +60,43 @@ const getCountryById = (id) => {
     .catch(e => e);
 }
 
+const orderByContinent = () => {
+    return Country.findAll({
+            attributes: ['id', 'name', 'continent'],
+            // order: ['name', 'ASC']
+            order:[
+                [Sequelize.literal('continent, name'), 'asc']
+            ],
+    })
+    .then(countries => {
+        const africa = [];
+        const americas = [];
+        const antarctic = [];
+        const asia = [];
+        const europe = [];
+        const oceania = [];
+        const contenedor = [];
+
+            countries.forEach(country => {
+                if(country.continent === 'Africa') africa.push(country)
+                if(country.continent === 'Americas') americas.push(country)
+                if(country.continent === 'Antarctic') antarctic.push(country)
+                if(country.continent === 'Asia') asia.push(country)
+                if(country.continent === 'Europe') europe.push(country)
+                if(country.continent === 'Oceania') oceania.push(country)
+            });
+
+        contenedor.push(africa, americas, antarctic, asia, europe, oceania);
+        console.log(contenedor.length);
+        return contenedor;
+    })
+    .catch(e => e);
+}
+
 module.exports = {
     getAllCountries,
     getAllDbCountries,
     getCountriesByName,
     getCountryById,
+    orderByContinent,
 };

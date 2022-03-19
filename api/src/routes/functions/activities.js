@@ -2,14 +2,21 @@ const { Activity } = require('../../db');
 const { getCountryById } = require('../functions/countries')
 
 const postActivity = (name, difficulty, duration, season, idCountry) => {
-    return Activity.create({
-        name,
-        difficulty,
-        duration,
-        season,
+
+    return Activity.findOrCreate({
+        where: {
+            name: name.toLowerCase(),
+        },
+        defaults: {
+
+            difficulty,
+            duration,
+            season,
+        }
     })
     .then(activity => {
-        return activity.addCountry(idCountry)
+        console.log(activity[0]);
+        return activity[0].addCountry(idCountry)
         .then(() => 'Actividad creada correctamente')
         .catch(e => e);
     })

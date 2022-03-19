@@ -14,7 +14,7 @@ export default function SearchBar(){
 
     const hancleClick = (e) => {
         e.preventDefault();
-        dispatch(getCountriesByName(name));
+        dispatch(getCountriesByName(name))
         setName('');
     }
 

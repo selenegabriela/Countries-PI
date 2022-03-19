@@ -5,6 +5,7 @@ const {
     getAllDbCountries,
     getCountriesByName,
     getCountryById,
+    orderByContinent,
 } = require('./functions/countries');
 
 router.use(express.json());
@@ -25,6 +26,11 @@ router.get('/', (req, res, next) => {
     }
 });
 
+router.get('/activitiesCountry', (req, res, next) => {
+    orderByContinent()
+    .then(countries => res.status(200).json(countries))
+    .catch(e => next(e));
+})
 router.get('/:id', (req, res, next) => {
     const { id } = req.params;
     

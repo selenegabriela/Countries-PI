@@ -23,12 +23,12 @@ router.post('/', (req, res, next) => {
         addActivity(idActivity, idCountry)
         .then(msg => res.status(200).json(msg))
         .catch(e => next(e));
-    } else if(idCountry){
+    } else if(idCountry && name){
         postActivity(name, difficulty, duration, season, idCountry)
         .then(msg => res.status(200).json(msg))
         .catch(e => next(e));
     } else {
-        res.json({msg: 'Debe proporcionar un país'});
+        res.json({msg: 'Debe proporcionar los datos solicitados'});
     }
 });
 
