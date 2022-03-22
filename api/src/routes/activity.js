@@ -16,15 +16,15 @@ router.get('/', (req, res, next) => {
     .catch(e => next(e));
 })
 router.post('/', (req, res, next) => {
-    const { name, difficulty, duration, season, idCountry, idActivity } = req.body;   
+    const { name, idCountry, idActivity } = req.body;   
 
     
-    if(idActivity) {
-        addActivity(idActivity, idCountry)
+    if(idActivity && idCountry.length) {
+        addActivity(req.body)
         .then(msg => res.status(200).json(msg))
         .catch(e => next(e));
-    } else if(idCountry && name){
-        postActivity(name, difficulty, duration, season, idCountry)
+    } else if(idCountry.length && name){
+        postActivity(req.body)
         .then(msg => res.status(200).json(msg))
         .catch(e => next(e));
     } else {

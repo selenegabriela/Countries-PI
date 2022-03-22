@@ -2,6 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { countriesActivities, createNewActivity } from "../actions";
 
+
+function validate(input){
+    const errors = {};
+    if(input.name.length < 3) errors.name = 'Debe ingresar un nombre válido.';
+    if(!input.idCountry.length) errors.idCountry = 'Debe seleccionar al menos un país';
+    return errors;
+}
+
 export default function CreateActivity(){
 
 
@@ -12,10 +20,11 @@ export default function CreateActivity(){
         season: '',
         idCountry: []
     });
+    const [ errors, setErrors ] = useState({});
 
     const dispatch = useDispatch();
     const allCountries = useSelector(state => state.orderedCountries);
-    const [africa, americas, antarctic, asia, europe, oceania] = allCountries;
+    
     // console.log(allCountries)
 
 
@@ -26,31 +35,51 @@ export default function CreateActivity(){
 
     const handleChange = (e) => {
         e.preventDefault();
-        setInput({
-            ...input,
-            [e.target.name]: e.target.value,
-        })
-    }
-
-    const handleCountryOptions = (e) => {
-        e.preventDefault();
-        if(e.target.checked){
+        if(e.target.name === "idCountry") {
             setInput({
                 ...input,
                 idCountry: [...input.idCountry, e.target.value]
             })
-        }
+            setErrors(validate({
+                ...input,
+                [e.target.name]: [...input.idCountry, e.target.value]
+            })) 
+        } else {
+            setInput({
+                ...input,
+                [e.target.name]: e.target.value,
+            })
+            setErrors(validate({
+                ...input,
+                [e.target.name]: e.target.value
+            })) 
+        } 
     }
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        dispatch(createNewActivity(input));
+
+        if(errors.name || errors.idCountry) {
+            alert('Debe llenar y/o seleccionar todos los campos')
+        } else {
+
+            dispatch(createNewActivity(input));
+            setInput({
+                name: '',
+                difficulty: '',
+                duration: '',
+                season: '',
+                idCountry: []
+            });
+            alert('La actividad se creó correctamente.');
+        }
+    }
+
+    const deleteCountry = (e) => {
+        e.preventDefault();
         setInput({
-            name: '',
-            difficulty: '',
-            duration: '',
-            season: '',
-            idCountry: []
+            ...input,
+            idCountry: input.idCountry.filter(country => country !== e.target.value)
         })
     }
 
@@ -59,71 +88,55 @@ export default function CreateActivity(){
             <form onSubmit={e => handleOnSubmit(e)}>
 
                 <label>Nombre: </label>
-                <input name='name' type="text" placeholder="Nombre de la actividad..." onChange={e => handleChange(e)}/><br />
+                <input name='name' value={input.name} type="text" placeholder="Nombre de la actividad..." onChange={e => handleChange(e)}/>
+                {
+                        errors.name && <label>{errors.name}</label>
+                }
+                <br />
                 <label>Dificultad: </label>
-                <select name="difficulty" onChange={e => handleChange(e)}>
+                <select value={input.difficulty} name="difficulty" onChange={e => handleChange(e)}>
+                    <option>1 - 10</option>
                     {
                         ['1','2','3','4','5','6','7','8','9','10'].map(number => {
-                            return <option value={number}>{number}</option>
+                            
+                            return <option key={number} value={number}>{number}</option>
                         })
                     }
                 </select><br />
                 <label>Duración: </label>
-                <select name='duration' onChange={e => handleChange(e)}>
-                    <option value="1 a 3 horas">1 a 3 horas</option>
-                    <option value="4 a 8 horas">4 a 8 horas</option>
-                    <option value="8 a 12 horas">8 a 12 horas</option>
-                    <option value="8 a 12 horas">Más de 12 horas</option>
+                <select value={input.duration} name='duration' onChange={e => handleChange(e)}>
+                    <option>Horas</option>
+                    <option value="1 a 3 horas">1 - 3</option>
+                    <option value="4 a 8 horas">4 - 8</option>
+                    <option value="8 a 12 horas">8 - 12</option>
+                    <option value="Más de 12 horas">Más de 12</option>
                 </select><br />
                 <label>Temporada: </label>
-                <select name='season' onChange={e => handleChange(e)}>
+                <select value={input.season} name='season' onChange={e => handleChange(e)}>
+                    <option>Estaciones</option>
                     <option value="Otoño">Otoño</option>
                     <option value="Invierno">Invierno</option>
                     <option value="Primavera">Primavera</option>
                     <option value="Verano">Verano</option>
                 </select> <br />
 
-                <button type="submit">Crear</button> 
-
-                <h2>África</h2>
-                {
-                    africa && africa.map(country => {
-                        return <label><input onChange={e => handleCountryOptions(e)} type="checkbox" name="" value={country.id}/>{country.name}</label>
-                    })
-                }
-                <h2>América</h2>
-                {
-                    americas && americas.map(country => {
-                        return <label><input onChange={e => handleCountryOptions(e)} type="checkbox" name="" value={country.id}/>{country.name}</label>
-                    })
-                }
-
-                 <h2>Antártida</h2>
-                {
-                    antarctic && antarctic.map(country => {
-                        return <label><input onChange={e => handleCountryOptions(e)} type="checkbox" name="" value={country.id}/>{country.name}</label>
-                    })
-                }
                 
-                <h2>Asia</h2>
+                <select value={'value' || input.idCountry} name="idCountry" onChange={e => handleChange(e)}>
+                    <option>Seleccionar país</option>
+                    {
+                        allCountries && allCountries.map(country => {
+                            return <option key={country.id} value={country.id}>{country.name}</option>
+                        })
+                    }
+                </select>
                 {
-                    asia && asia.map(country => {
-                        return <label><input onChange={e => handleCountryOptions(e)} type="checkbox" name="" value={country.id}/>{country.name}</label>
-                    })
+                    errors.idCountry && <label>{errors.idCountry}</label>
                 }
-                
-                <h2>Europa</h2>
+                <button type="submit" disabled={((errors.name || errors.idCountry) || (!input.name || !input.idCountry.length)) && 'disabled'}>Crear</button> 
                 {
-                    europe && europe.map(country => {
-                        return <label><input onChange={e => handleCountryOptions(e)} type="checkbox" name="" value={country.id}/>{country.name}</label>
-                    })
-                }
-                
-                <h2>Oceanía</h2>
-                {
-                    oceania && oceania.map(country => {
-                        return <label><input onChange={e => handleCountryOptions(e)} type="checkbox" name="" value={country.id}/>{country.name}</label>
-                    })
+                    input.idCountry.length ? input.idCountry.map(country => {
+                        return <label key={country}>{country}<button value={country} onClick={e => deleteCountry(e)}>Eliminar</button></label> 
+                    }) : ''
                 }
             </form>
         </div>

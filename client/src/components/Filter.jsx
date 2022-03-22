@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllActivities, alphabeticalOrder, populationOrder, continentFilter, activitiesFilter } from '../actions';
-import { useNavigate } from 'react-router-dom';
+
 
 export default function Filter(props){
 

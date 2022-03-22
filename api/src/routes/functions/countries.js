@@ -62,34 +62,35 @@ const getCountryById = (id) => {
 
 const orderByContinent = () => {
     return Country.findAll({
-            attributes: ['id', 'name', 'continent'],
+            attributes: ['id', 'name'],
             // order: ['name', 'ASC']
             order:[
-                [Sequelize.literal('continent, name'), 'asc']
+                [Sequelize.literal('name'), 'asc']
             ],
     })
-    .then(countries => {
-        const africa = [];
-        const americas = [];
-        const antarctic = [];
-        const asia = [];
-        const europe = [];
-        const oceania = [];
-        const contenedor = [];
+    .then(countries => countries)
+    //{
+        // const africa = [];
+        // const americas = [];
+        // const antarctic = [];
+        // const asia = [];
+        // const europe = [];
+        // const oceania = [];
+        // const contenedor = [];
 
-            countries.forEach(country => {
-                if(country.continent === 'Africa') africa.push(country)
-                if(country.continent === 'Americas') americas.push(country)
-                if(country.continent === 'Antarctic') antarctic.push(country)
-                if(country.continent === 'Asia') asia.push(country)
-                if(country.continent === 'Europe') europe.push(country)
-                if(country.continent === 'Oceania') oceania.push(country)
-            });
+        //     countries.forEach(country => {
+        //         if(country.continent === 'Africa') africa.push(country)
+        //         if(country.continent === 'Americas') americas.push(country)
+        //         if(country.continent === 'Antarctic') antarctic.push(country)
+        //         if(country.continent === 'Asia') asia.push(country)
+        //         if(country.continent === 'Europe') europe.push(country)
+        //         if(country.continent === 'Oceania') oceania.push(country)
+        //     });
 
-        contenedor.push(africa, americas, antarctic, asia, europe, oceania);
-        console.log(contenedor.length);
-        return contenedor;
-    })
+        // contenedor.push(africa, americas, antarctic, asia, europe, oceania);
+        // console.log(contenedor.length);
+        // return contenedor;
+    //})
     .catch(e => e);
 }
 

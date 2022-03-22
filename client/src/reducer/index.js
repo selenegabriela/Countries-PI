@@ -1,10 +1,11 @@
-import { GET_ALL_COUNTRIES, GET_ALL_ACTIVITIES, GET_COUNTRIES_BY_NAME, ALPHABETICAL_ORDER, POPULATION_ORDER, CONTINENT_FILTER, ACTIVITIES_FILTER, COUNTRIES_ACTIVITIES, CREATE_ACTIVITY } from '../actions';
+import { GET_ALL_COUNTRIES, GET_ALL_ACTIVITIES, GET_COUNTRIES_BY_NAME, ALPHABETICAL_ORDER, POPULATION_ORDER, CONTINENT_FILTER, ACTIVITIES_FILTER, COUNTRIES_ACTIVITIES, CREATE_ACTIVITY, GET_COUNTRY_BY_ID } from '../actions';
 const initialState = {
     countries: [],
     activities: [],
     auxiliarCountries: [],
     orderedCountries: [],
-
+    msg: '',
+    detail: {}
 }
 
 export default function rootReducer(state = initialState, action){
@@ -100,6 +101,12 @@ export default function rootReducer(state = initialState, action){
         case CREATE_ACTIVITY:
             return {
                 ...state,
+                msg: action.payload,
+            }
+        case GET_COUNTRY_BY_ID:
+            return {
+                ...state,
+                detail: action.payload,
             }
         default:
             console.log('heydef')

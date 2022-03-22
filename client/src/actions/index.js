@@ -8,6 +8,7 @@ export const CONTINENT_FILTER = 'CONTINENT_FILTER';
 export const ACTIVITIES_FILTER = 'ACTIVITIES_FILTER';
 export const COUNTRIES_ACTIVITIES = 'COUNTRIES_ACTIVITIES';
 export const CREATE_ACTIVITY = 'CREATE_ACTIVITY';
+export const GET_COUNTRY_BY_ID = 'GET_COUNTRY_BY_ID';
 
 export const getAllCountries = () => {
     return function(dispatch){
@@ -60,10 +61,16 @@ export const activitiesFilter = payload => {
     return {type: ACTIVITIES_FILTER, payload}
 }
 
-
 export const createNewActivity = payload => {
     return function(dispatch){
         return axios.post('http://localhost:3001/api/activity/', payload)
         .then(msg => dispatch({type: CREATE_ACTIVITY, payload: msg.data }))
+    }
+}
+
+export const getCountryById = id => {
+    return function(dispatch){
+        return axios.get(`http://localhost:3001/api/countries/${id}`)
+        .then(country => dispatch({type: GET_COUNTRY_BY_ID, payload: country.data}));
     }
 }

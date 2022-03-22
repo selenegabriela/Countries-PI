@@ -12,7 +12,7 @@ export default function Paginator(){
 
     const [ flagRender, setFlagRender ] = useState(1);
     const [ page, setPage ] = useState(1); 
-    const [ countriesPerPage, setCountriesPerPage ] = useState(10);
+    const [ countriesPerPage ] = useState(10);
     const indexEnd = page === 1 ? 9 : (page * countriesPerPage) - 1; 
     const indexStart = page === 1 ? 0 : indexEnd - countriesPerPage; 
     const currentCountries = (typeof allCountries !== 'string') ? allCountries.slice(indexStart, indexEnd) : allCountries;
@@ -40,7 +40,7 @@ export default function Paginator(){
             }
             {
                (typeof currentCountries !== 'string') ? currentCountries.map(country => {
-                   return <Card image={country.image} name={country.name} continent={country.continent} key={country.id} />
+                   return <Card image={country.image} name={country.name} continent={country.continent} id={country.id} key={country.id} />
                }) : <h2>{allCountries}</h2>
             }
             
