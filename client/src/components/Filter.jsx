@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllActivities, alphabeticalOrder, populationOrder, continentFilter, activitiesFilter } from '../actions';
-
+import s from './Filter.module.css'
 
 export default function Filter(props){
 
@@ -39,43 +39,46 @@ export default function Filter(props){
     }
 
     return(
-        <div>
-            <>
-                <label htmlFor="">Orden</label>
-                <select onChange={e => handleAlphabetSelect(e)}>
-                    <option>Alfabético</option>
-                    <option value='Asc'>Ascendente</option>
-                    <option value='Des'>Descendente</option>
-                </select>
-                <select onChange={e => handlePopulationSelect(e)}>
-                    <option>Población</option>
-                    <option value='Maj'>Mayor población</option>
-                    <option value='Min'>Menor población</option>
-                </select>
-            </>
-            <>
-            
-                <label htmlFor="">Filtros</label>
-                <select onChange={e => handleContinentSelect(e)} >
-                    <option value='All'>Continente</option>
-                    <option value='Americas'>América</option>
-                    <option value='Africa'>África</option>
-                    <option value='Europe'>Europa</option>
-                    <option value='Asia'>Asia</option>
-                    <option value='Oceania'>Oceanía</option>
-                    <option value='Antarctic'>Antártida</option>
-                </select>
-                <select onChange={e => handleActivitiesSelect(e)}>
-                    <option value='All'>Actividades</option>
+        <div className={s.contenedor}>
+            <div className={s.contenedorDos}>
+                <label className={s.label} htmlFor="">Ordenamiento y filtrado</label>
+                <div className={s.contenedorTres}>
                     
-                    {   
-                    ( typeof allActivities !== 'string') ? allActivities.map(activity => {
+                    <select className={`${s.select}`} onChange={e => handleAlphabetSelect(e)}>
+                        <option>Alfabético</option>
+                        <option value='Asc'>Ascendente</option>
+                        <option value='Des'>Descendente</option>
+                    </select>
+                    <select className={`${s.select}`} onChange={e => handlePopulationSelect(e)}>
+                        <option>Población</option>
+                        <option value='Maj'>Mayor población</option>
+                        <option value='Min'>Menor población</option>
+                    </select>
+            
+                    
+                
+
+                    <select className={`${s.select}`} onChange={e => handleContinentSelect(e)} >
+                        <option value='All'>Continente</option>
+                        <option value='Americas'>América</option>
+                        <option value='Africa'>África</option>
+                        <option value='Europe'>Europa</option>
+                        <option value='Asia'>Asia</option>
+                        <option value='Oceania'>Oceanía</option>
+                        <option value='Antarctic'>Antártida</option>
+                    </select>
+                    <select className={`${s.select}`} onChange={e => handleActivitiesSelect(e)}>
+                        <option value='All'>Actividades</option>
+                        
+                        {   
+                        ( typeof allActivities !== 'string') ? allActivities.map(activity => {
                             return <option value={activity.name} key={activity.id}>{activity.name}</option>
                             
                         }) : <option value='All'>{allActivities}</option>
-                    }
-                </select>
-            </>
+                        }
+                    </select>
+                </div>
+             </div>
         </div>
     )
 }

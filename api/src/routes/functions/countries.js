@@ -56,7 +56,10 @@ const getCountryById = (id) => {
             model: Activity,
         }
     })
-    .then(country => country)
+    .then(country => {
+        if(country === null) return false;
+        else return country;
+    })
     .catch(e => e);
 }
 

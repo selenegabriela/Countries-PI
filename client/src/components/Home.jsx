@@ -1,13 +1,12 @@
 import React from 'react';
 import Paginator from './Paginator';
-import SearchBar from './SearchBar';
+import s from './Home.module.css'
 
 
 export default function Home(){
     
     return(
-        <div>
-            <SearchBar />
+        <div className={s.contenedor}>
             <Paginator />
         </div>
     )

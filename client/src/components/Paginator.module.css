@@ -1,0 +1,11 @@
+.contenedorUno {
+    display:inline-block;
+    /* background-color: var(--blue-color); */
+    padding: 15px 200px;
+    /* border-style: solid; */
+    /* border-color: var(--title-color); */
+}
+.contenedorCard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}

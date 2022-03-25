@@ -1,0 +1,45 @@
+.background {
+    background-image: url('https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/vintage-world-map-yorkfoto.jpg');
+    background-position:center;
+    padding-top: 50px;
+    min-height: 93vh; 
+    /* background-size: cover; */
+    /* height: 700px; */
+  
+    /* background-image: url('https://wallpaperbat.com/img/75845-world-map-wallpaper-full-hd-wallpaper-search-laptop-wallpaper.jpg'); */
+    /* background-image: url('https://wallpaperbat.com/img/713713-world-map-wallpaper.jpg'); */
+    /* filter: invert(100%);  */
+    
+    /* background-size: cover;  */
+    
+    /* -moz-background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover; */  
+}
+.h {
+    margin-top: -50px;
+    padding-top: 20px;
+    background-color: var(--blue-color);
+    color: var(--title-color);
+    font-family: var(--title-font);
+    font-weight: 700;
+    font-size: 39px;
+    /* background: -webkit-linear-gradient(#010A49, #6977E3);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent; */  
+}
+.btn {
+    margin-top: 510px;
+    padding: 10px;
+    border-style: none;
+    border-radius: 10px;  
+    font-size: 20px;
+    font-weight: 700;
+    font-family: var(--font-family2);
+    background-color: var(--gray-color);
+    color:var(--white);
+}
+.btn:hover{
+    cursor: pointer;
+    background-color: var(--black);
+}

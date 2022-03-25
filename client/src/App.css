@@ -1,5 +1,23 @@
+:root{
+  --title-color: #34a53b;
+  --blue-color: #2c4069;
+  --gray-color: #3a3e3f;
+  --clear-gray: #82878a;
+  --yellow: #d3b50e;
+  --red:  #c23131;
+  --black: #000;
+  --white: #eee;
+
+  --title-font: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  /* --font-family1: 'Faustina', serif; */
+  --font-family:  'PT Sans Narrow', sans-serif;
+  /* --font-family3: 'Stint Ultra Condensed', cursive; */
+  
+  
+}
 .App {
   text-align: center;
+  display: grid;
 }
 
 .App-logo {

@@ -1,0 +1,32 @@
+.contenedor {
+    display: flex;
+    justify-content:center;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+.input{
+    padding: 5px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: var(--clear-gray);
+    font-family: var(--font-family);
+    color: var(--clear-gray);
+}
+.input::placeholder{
+    color: var(--clear-gray);
+    font-family: var(--font-family);
+}
+.btn {
+    border-style: none;
+    font-family: var(--font-family);
+    font-weight: 400;
+    border-radius: 5px;
+    color: var(--clear-gray);
+}
+.btn:hover {
+    cursor: pointer;
+}
+.inputBtn {
+    font-size: 17px;
+    font-weight: 700;
+}

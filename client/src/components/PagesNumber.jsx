@@ -1,4 +1,5 @@
 import React from "react";
+import s from './PagesNumber.module.css'
 
 
 export default function PagesNumber(props) {
@@ -16,12 +17,12 @@ export default function PagesNumber(props) {
 
     console.log(allPages)
 
-    return (<ul>
+    return (<ul className={`${s.contenedor} ${s.ul}`}>
     {
         
         allPages.length ? allPages.map(pageNumber => {
-            return <li key={pageNumber}><button onClick={() => setPageNumber(pageNumber)}>{pageNumber}</button></li> 
-        }) : <label htmlFor="">No se puede ordenar lo que no existe 🙄</label>
+            return <li key={pageNumber}><button className={s.btn} onClick={() => setPageNumber(pageNumber)}>{pageNumber}</button></li> 
+        }) : ''// <label htmlFor="">No se puede ordenar lo que no existe 🙄</label>
     }
     </ul>)
 }

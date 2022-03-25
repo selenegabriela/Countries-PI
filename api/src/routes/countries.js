@@ -37,7 +37,7 @@ router.get('/:id', (req, res, next) => {
     getCountryById(id)
     .then(country => {
         if(country) res.status(200).json(country)
-        else res.status(404).json('País no encontrado');
+        else res.json('País no encontrado');
     })
     .catch(e => next(e));
 });

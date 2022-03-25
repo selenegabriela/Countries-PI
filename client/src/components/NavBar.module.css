@@ -1,0 +1,38 @@
+.background {
+    /* margin-top: -25px; */
+    display: inline-block;
+    background-color: var(--blue-color);
+    display: flex;
+    justify-content:space-between;
+    padding: 10px 0 12px 0;
+    min-width: 100%;
+    position: fixed;
+    /* margin-bottom: 1000px; */
+}
+.h {
+    margin: 0;
+    color: var(--title-color);
+    font-family: var(--title-font);
+    font-weight: 200;
+    font-size: 30px;
+}
+#nuevaActividad {
+    margin: 5px 15px 0 0;
+}
+#inicio {
+    margin: 5px 0 0 15px;
+}
+.btn {
+    padding: 5px 10px;
+    background-color: var(--title-color);
+    color: var(--blue-color);
+    font-size: 17px;
+    font-family: var(--font-family);
+    font-weight: 700;
+    border-style: none;
+    border-radius: 5px;
+}
+.btn:hover {
+    cursor: pointer;
+    background-color: var(--yellow);
+}

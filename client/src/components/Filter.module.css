@@ -1,0 +1,36 @@
+.contenedor {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+.contenedorDos {
+    display: grid;
+}
+.contenedorTres {
+    display: flex;
+    gap: 10px;
+}
+.select {
+    font-family: var(--font-family);
+    font-size: 17.5px;
+    font-weight: 700;
+    color: var(--clear-gray);
+    border-width: 1px;
+    background-color: var(--white);
+    border-radius: 5px;
+    border-style: none;
+}
+.select:hover {
+    cursor: pointer;
+}
+.option:hover {
+    cursor: pointer;
+}
+.label {
+    font-size: 25px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--clear-gray);
+    /* background-color: var(--red); */
+}

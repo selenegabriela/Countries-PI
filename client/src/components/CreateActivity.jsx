@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { countriesActivities, createNewActivity } from "../actions";
+import { countriesActivities, createNewActivity, getAllActivities } from "../actions";
+import s from './CreateActivity.module.css';
 
 
 function validate(input){
@@ -71,6 +72,7 @@ export default function CreateActivity(){
                 season: '',
                 idCountry: []
             });
+            dispatch(getAllActivities());
             alert('La actividad se creó correctamente.');
         }
     }
@@ -84,7 +86,7 @@ export default function CreateActivity(){
     }
 
     return(
-        <div>
+        <div className={s.contenedor}>
             <form onSubmit={e => handleOnSubmit(e)}>
 
                 <label>Nombre: </label>

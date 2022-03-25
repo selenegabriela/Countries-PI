@@ -5,6 +5,8 @@ import { getAllCountries } from '../actions';
 import Card from './Card';
 import PagesNumber from './PagesNumber';
 import Filter from './Filter';
+import SearchBar from './SearchBar';
+import s from './Paginator.module.css'
 
 export default function Paginator(){
     const dispatch = useDispatch();
@@ -31,18 +33,26 @@ export default function Paginator(){
     
     
     return(
-        <div>
-            {
-                <Filter flagRender={flagRender} changeFlagRender={changeFlagRender} setPageNumber={setPageNumber} />
-            }          
+        <div >
+            <div className={s.contenedorUno}>
+                {
+                    <Filter flagRender={flagRender} changeFlagRender={changeFlagRender} setPageNumber={setPageNumber} />
+                }          
+                {
+                    <SearchBar />
+                }
+            </div>
             {
                 (typeof currentCountries !== 'string') && <PagesNumber countriesLength={allCountries.length} countriesPerPage={countriesPerPage} setPageNumber={setPageNumber}/>
             }
-            {
-               (typeof currentCountries !== 'string') ? currentCountries.map(country => {
-                   return <Card image={country.image} name={country.name} continent={country.continent} id={country.id} key={country.id} />
-               }) : <h2>{allCountries}</h2>
-            }
+            <div className={s.contenedorCard}>
+
+                {
+                (typeof currentCountries !== 'string') ? currentCountries.map(country => {
+                    return <Card image={country.image} name={country.name} continent={country.continent} id={country.id} key={country.id} />
+                }) : <h2>{allCountries}</h2>
+                }
+            </div>
             
         </div>
         

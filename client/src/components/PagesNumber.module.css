@@ -1,0 +1,14 @@
+.contenedor {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+}
+.ul {
+    list-style: outside none none;
+}
+.btn {
+    border-style: none;
+}
+.btn:hover {
+    cursor: pointer;
+}

@@ -1,12 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import s from './NavBar.module.css'
 
 export default function NewActivity(){
     return(
-        <div>
-            <Link to='/activity'>
-                <button>Nueva actividad</button>
-            </Link>
-        </div>
+        
+            <NavLink to='/activity'>
+                <button className={s.btn} id={s.nuevaActividad}>Nueva actividad</button>
+            </NavLink>
+        
     )
 }
