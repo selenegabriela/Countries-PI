@@ -18,6 +18,10 @@
 .App {
   text-align: center;
   display: grid;
+  background-image: url('https://img.freepik.com/vector-gratis/cielo-fantasia-azul-pastel-acuarela-pintada-mano-fondo_100956-631.jpg');
+  background-size: cover;
+  position: relative;
+  min-width: 100%;
 }
 
 .App-logo {

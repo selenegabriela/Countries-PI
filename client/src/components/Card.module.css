@@ -1,0 +1,37 @@
+.contenedor {
+    padding-top: 10px;
+    border-style:hidden;
+    /* border-color: var(--blue-color);  */
+    border-width: 1px;
+    display: grid;
+    /* background-image: url('https://static.vecteezy.com/system/resources/previews/000/469/175/non_2x/vector-africa-sketch-concept.jpg'); */
+    background-color: var(--blue-color);
+    
+    width: 310px;
+    height: 360px;
+    border-radius: 10px;
+    
+}
+
+.h2{
+    margin-top: 0;
+    color: var(--white)
+    
+}
+.h3{
+    margin-top: 0;
+    color: var(--white)
+    
+}
+.contenedorImg {
+    
+    height: 220px;
+}
+.img{
+    padding-top: 10px;
+    
+  width: 92%;
+  height: 180px;
+}
+
+    

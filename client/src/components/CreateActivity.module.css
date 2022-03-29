@@ -1,3 +1,69 @@
 .contenedor {
     margin-top: 90px;
+    min-height: 93vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.divForm {
+    width: 490px;
+    height: 70%;
+    background-color: var(--blue-color);
+    display: flex;
+    justify-content:flex-start;
+    align-items:flex-start;
+    border-radius: 10px;
+
+    /* flex-direction: column; */
+    margin-top: 50px;
+
+}
+.form {
+    display: inline;
+    text-align: left;
+    padding: 10px;
+}
+.label {
+    display: inline-block;
+    
+    margin: 30px 10px 0 10px;
+    padding: 10px 0 0 30px;
+    font-size: 20px;
+    color: var(--white);
+    font-weight: bold;
+}
+.input {
+    padding: 7px;
+    border-radius: 5px;
+    border-style: none;
+    font-size: 14px;
+    font-family: var(--font-family);
+    font-size: 15px;
+}
+
+.select {
+    font-family: var(--font-family);
+    font-size: 15px;
+    border-radius: 5px;
+}
+.selectPaises {
+    margin: 40px 0 0 40px;
+}
+.divBtn {
+    display: flex;
+    justify-content: center;
+}
+.btn {
+    margin-top: 40px;
+    padding: 5px 40px;
+    background-color: var(--red);
+    color: var(--blue-color);
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 5px;
+}
+.btn:hover{
+    background-color: (--title-color);
+    cursor: pointer;
 }

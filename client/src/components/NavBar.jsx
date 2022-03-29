@@ -1,5 +1,5 @@
 import React from 'react';
-import NewActivity from './NewActivity.jsx';
+import NewActivity from './NewActivity';
 import { Link } from 'react-router-dom';
 import s from './NavBar.module.css'
 

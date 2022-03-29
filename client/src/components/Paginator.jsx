@@ -33,8 +33,8 @@ export default function Paginator(){
     
     
     return(
-        <div >
-            <div className={s.contenedorUno}>
+        <div className={s.contenedorUno}>
+            <div >
                 {
                     <Filter flagRender={flagRender} changeFlagRender={changeFlagRender} setPageNumber={setPageNumber} />
                 }          

@@ -15,22 +15,25 @@
     font-family: var(--font-family);
     font-size: 17.5px;
     font-weight: 700;
-    color: var(--clear-gray);
+    color: var(--white);
     border-width: 1px;
-    background-color: var(--white);
+    background-color: var(--red);
     border-radius: 5px;
     border-style: none;
 }
 .select:hover {
     cursor: pointer;
 }
-.option:hover {
+.select option {
     cursor: pointer;
+    background-color: var(--white);
+    color: var(--red);
 }
 .label {
-    font-size: 25px;
+
+    font-size: 32px;
     font-weight: 700;
-    margin-bottom: 10px;
-    color: var(--clear-gray);
+    margin-bottom: 20px;
+    color: var(--gray-color);
     /* background-color: var(--red); */
 }

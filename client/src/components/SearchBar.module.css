@@ -8,7 +8,7 @@
     padding: 5px;
     border-radius: 5px;
     border-style: solid;
-    border-color: var(--clear-gray);
+    border-color: var(--gray);
     font-family: var(--font-family);
     color: var(--clear-gray);
 }
@@ -21,7 +21,8 @@
     font-family: var(--font-family);
     font-weight: 400;
     border-radius: 5px;
-    color: var(--clear-gray);
+    color: var(--white);
+    background-color: var(--red);
 }
 .btn:hover {
     cursor: pointer;

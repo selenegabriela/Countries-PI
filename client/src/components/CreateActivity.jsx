@@ -87,60 +87,65 @@ export default function CreateActivity(){
 
     return(
         <div className={s.contenedor}>
-            <form onSubmit={e => handleOnSubmit(e)}>
+            <div className={s.divForm}>
 
-                <label>Nombre: </label>
-                <input name='name' value={input.name} type="text" placeholder="Nombre de la actividad..." onChange={e => handleChange(e)}/>
-                {
-                        errors.name && <label>{errors.name}</label>
-                }
-                <br />
-                <label>Dificultad: </label>
-                <select value={input.difficulty} name="difficulty" onChange={e => handleChange(e)}>
-                    <option>1 - 10</option>
-                    {
-                        ['1','2','3','4','5','6','7','8','9','10'].map(number => {
-                            
-                            return <option key={number} value={number}>{number}</option>
-                        })
-                    }
-                </select><br />
-                <label>Duración: </label>
-                <select value={input.duration} name='duration' onChange={e => handleChange(e)}>
-                    <option>Horas</option>
-                    <option value="1 a 3 horas">1 - 3</option>
-                    <option value="4 a 8 horas">4 - 8</option>
-                    <option value="8 a 12 horas">8 - 12</option>
-                    <option value="Más de 12 horas">Más de 12</option>
-                </select><br />
-                <label>Temporada: </label>
-                <select value={input.season} name='season' onChange={e => handleChange(e)}>
-                    <option>Estaciones</option>
-                    <option value="Otoño">Otoño</option>
-                    <option value="Invierno">Invierno</option>
-                    <option value="Primavera">Primavera</option>
-                    <option value="Verano">Verano</option>
-                </select> <br />
+                <form className={s.form} onSubmit={e => handleOnSubmit(e)}>
 
-                
-                <select value={'value' || input.idCountry} name="idCountry" onChange={e => handleChange(e)}>
-                    <option>Seleccionar país</option>
+                    <label className={s.label}>Nombre: </label>
+                    <input className={s.input} name='name' value={input.name} type="text" placeholder="Nombre de la actividad..." onChange={e => handleChange(e)}/>
                     {
-                        allCountries && allCountries.map(country => {
-                            return <option key={country.id} value={country.id}>{country.name}</option>
-                        })
+                            errors.name && <label>{errors.name}</label>
                     }
-                </select>
-                {
-                    errors.idCountry && <label>{errors.idCountry}</label>
-                }
-                <button type="submit" disabled={((errors.name || errors.idCountry) || (!input.name || !input.idCountry.length)) && 'disabled'}>Crear</button> 
-                {
-                    input.idCountry.length ? input.idCountry.map(country => {
-                        return <label key={country}>{country}<button value={country} onClick={e => deleteCountry(e)}>Eliminar</button></label> 
-                    }) : ''
-                }
-            </form>
+                    <br />
+                    <label className={s.label}>Dificultad: </label>
+                    <select className={s.select} value={input.difficulty} name="difficulty" onChange={e => handleChange(e)}>
+                        <option>1 - 10</option>
+                        {
+                            ['1','2','3','4','5','6','7','8','9','10'].map(number => {
+                                
+                                return <option key={number} value={number}>{number}</option>
+                            })
+                        }
+                    </select ><br />
+                    <label className={s.label}>Duración: </label>
+                    <select className={s.select} value={input.duration} name='duration' onChange={e => handleChange(e)}>
+                        <option>Horas</option>
+                        <option value="1 a 3 horas">1 - 3</option>
+                        <option value="4 a 8 horas">4 - 8</option>
+                        <option value="8 a 12 horas">8 - 12</option>
+                        <option value="Más de 12 horas">Más de 12</option>
+                    </select><br />
+                    <label className={s.label}>Temporada: </label>
+                    <select className={s.select} value={input.season} name='season' onChange={e => handleChange(e)}>
+                        <option>Estaciones</option>
+                        <option value="Otoño">Otoño</option>
+                        <option value="Invierno">Invierno</option>
+                        <option value="Primavera">Primavera</option>
+                        <option value="Verano">Verano</option>
+                    </select> <br />
+
+                    
+                    <select className={`${s.select} ${s.selectPaises}`} value={'value' || input.idCountry} name="idCountry" onChange={e => handleChange(e)}>
+                        <option>Seleccionar país</option>
+                        {
+                            allCountries && allCountries.map(country => {
+                                return <option key={country.id} value={country.id}>{country.name}</option>
+                            })
+                        }
+                    </select>
+                    {
+                        errors.idCountry && <label>{errors.idCountry}</label>
+                    }
+                    <div className={s.divBtn}>
+                        <button className={s.btn} type="submit" disabled={((errors.name || errors.idCountry) || (!input.name || !input.idCountry.length)) && 'disabled'}>Crear</button> 
+                    </div>
+                    {
+                        input.idCountry.length ? input.idCountry.map(country => {
+                            return <label key={country}>{country}<button value={country} onClick={e => deleteCountry(e)}>Eliminar</button></label> 
+                        }) : ''
+                    }
+                </form>
+            </div>
         </div>
     )
 }
