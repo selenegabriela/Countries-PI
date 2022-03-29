@@ -22,3 +22,9 @@
     /* width: 50px; */
     
 }
+.noEncontrado{
+    margin-top: 0;
+    width:max-content;
+    text-align: center;
+    margin-left: 150px;
+}

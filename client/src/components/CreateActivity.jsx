@@ -6,7 +6,7 @@ import s from './CreateActivity.module.css';
 
 function validate(input){
     const errors = {};
-    if(input.name.length < 3) errors.name = 'Debe ingresar un nombre válido.';
+    if(input.name.length < 3) errors.name = 'El nombre debe tener al menos 3 caracteres.';
     if(!input.idCountry.length) errors.idCountry = 'Debe seleccionar al menos un país';
     return errors;
 }
@@ -94,14 +94,14 @@ export default function CreateActivity(){
                     <label className={s.label}>Nombre: </label>
                     <input className={s.input} name='name' value={input.name} type="text" placeholder="Nombre de la actividad..." onChange={e => handleChange(e)}/>
                     {
-                            errors.name && <label>{errors.name}</label>
+                            errors.name && <label className={s.labelError}>{errors.name}</label>
                     }
                     <br />
                     <label className={s.label}>Dificultad: </label>
                     <select className={s.select} value={input.difficulty} name="difficulty" onChange={e => handleChange(e)}>
                         <option>1 - 10</option>
                         {
-                            ['1','2','3','4','5','6','7','8','9','10'].map(number => {
+                            [1,2,3,4,5,6,7,8,9,10].map(number => {
                                 
                                 return <option key={number} value={number}>{number}</option>
                             })
@@ -134,16 +134,18 @@ export default function CreateActivity(){
                         }
                     </select>
                     {
-                        errors.idCountry && <label>{errors.idCountry}</label>
+                        errors.idCountry && <label className={s.labelError}>{errors.idCountry}</label>
                     }
                     <div className={s.divBtn}>
-                        <button className={s.btn} type="submit" disabled={((errors.name || errors.idCountry) || (!input.name || !input.idCountry.length)) && 'disabled'}>Crear</button> 
+                        <div className={s.labelBtn}>
+                            {
+                                input.idCountry.length ? input.idCountry.map(country => {
+                                    return <label className={s.labelPaises} key={country}>{country}<button className={s.btnEliminar} value={country} onClick={e => deleteCountry(e)}>X</button></label> 
+                                }) : ''
+                            }
+                        </div>
+                        <button className={errors.name || errors.idCountry ? s.btnError : s.btn} type="submit" disabled={((errors.name || errors.idCountry) || (!input.name || !input.idCountry.length)) && 'disabled'}>Crear</button> 
                     </div>
-                    {
-                        input.idCountry.length ? input.idCountry.map(country => {
-                            return <label key={country}>{country}<button value={country} onClick={e => deleteCountry(e)}>Eliminar</button></label> 
-                        }) : ''
-                    }
                 </form>
             </div>
         </div>

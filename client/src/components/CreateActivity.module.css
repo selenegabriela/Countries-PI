@@ -8,7 +8,7 @@
 }
 .divForm {
     width: 490px;
-    height: 70%;
+    height: 80%;
     background-color: var(--blue-color);
     display: flex;
     justify-content:flex-start;
@@ -16,7 +16,7 @@
     border-radius: 10px;
 
     /* flex-direction: column; */
-    margin-top: 50px;
+    margin-top: 30px;
 
 }
 .form {
@@ -51,10 +51,25 @@
     margin: 40px 0 0 40px;
 }
 .divBtn {
-    display: flex;
+    display: grid;
     justify-content: center;
 }
 .btn {
+    margin-top: 80px;
+    padding: 5px 40px;
+    background-color: var(--title-color);
+    color: var(--blue-color);
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 5px;
+    border-style: none;
+    
+}
+.btn:hover{
+    background-color: (--title-color);
+    cursor: pointer;
+}
+.btnError {
     margin-top: 40px;
     padding: 5px 40px;
     background-color: var(--red);
@@ -62,8 +77,31 @@
     font-weight: bold;
     font-size: 15px;
     border-radius: 5px;
+    border-style: none;
 }
-.btn:hover{
-    background-color: (--title-color);
-    cursor: pointer;
+.labelError {
+    display: block;
+    font-weight: bold;
+    color: var(--red);
+    margin: 0 40px
+}
+.labelPaises {
+    display: inline;
+    margin-top: 10px;
+    font-family: var(--font-family);
+}
+.labelBtn {
+    display: flex;
+    gap: 10px;
+}
+.btnEliminar {
+    display: inline;
+    margin-top: 10px;
+    margin-left: 5px;
+    font-family: var(--font-family);
+    font-weight: bold;
+    border-radius: 5px;
+    border-style: none;
+    background-color: var(--yellow);
+    color: var(--blue-color);
 }

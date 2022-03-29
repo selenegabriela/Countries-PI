@@ -1,0 +1,93 @@
+.contenedor {
+    margin-top: 90px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+/* .detallesForm {
+    grid-column: 2 / 3;
+} */
+.detalles {
+    padding: 10px 0;
+    width: 400px;
+    height: auto;
+    margin: 20px 0 40px 30px;
+    background-color: var(--blue-color);
+    border-style: none;
+    border-radius: 5px;
+    color: var(--white);
+    
+}
+.espDetalles {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    margin-left: 30px;
+}
+.sinActividades{
+    margin-top: 90px;
+    display: flex;
+    justify-content: center;
+    
+}
+.img {
+    width: 370px;
+    height: auto;
+}
+.actividades {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 40px;    
+    
+}
+.actividad {
+    justify-self: center;
+    width: 200px;
+    height:min-content;
+    background-color: var(--blue-color);
+    border-radius: 5px;
+    border-style: none;
+    margin: 20px 0;
+}
+.fuente {
+    margin: 10px 0;
+    font-size: 20px;
+}
+.btn {
+    background-color: var(--red);
+    font-family: var(--font-family);
+    font-size: 17px;
+    font-weight: bold;
+    color: var(--white);
+    border-radius: 5px;
+    border-style: none;
+    padding: 5px 30px;
+    
+}
+.btn {
+    cursor: pointer;
+}
+.select {
+    background-color: var(--white);
+    font-family: var(--font-family);
+    color: var(--red);
+    font-weight: bold;
+    font-size: 17px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: var(--red);
+    border-width: 2px;
+    padding: 5px 50px;
+
+}
+.select:hover {
+    cursor: pointer;
+}
+.form {
+    display: flex;
+    gap: 20px;
+    margin-left: 30px;
+}
+.fuenteActividad {
+    font-size: 18px;
+    color: var(--white);
+}

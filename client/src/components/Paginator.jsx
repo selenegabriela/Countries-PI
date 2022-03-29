@@ -50,7 +50,7 @@ export default function Paginator(){
                 {
                 (typeof currentCountries !== 'string') ? currentCountries.map(country => {
                     return <Card image={country.image} name={country.name} continent={country.continent} id={country.id} key={country.id} />
-                }) : <h2>{allCountries}</h2>
+                }) : <h2 className={s.noEncontrado}>{allCountries}</h2>
                 }
             </div>
             
