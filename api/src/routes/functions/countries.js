@@ -10,7 +10,7 @@ const getAllCountries = () => {
             where: {id: country.cca3},
             defaults: {
                 id: country.cca3,
-                name: country.name.official,
+                name: country.name.common,
                 image: country.flags[0] ? country.flags[0] : 'no image',
                 continent: country.region,   
                 capital: country.capital ?  country.capital[0] : "no information",
@@ -42,9 +42,6 @@ const getCountriesByName = (name) => {
                 [Op.iLike]: `%${name}%`
             }
         },
-        include: {
-            model: Activity,
-        }
     })
     .then(countries => countries)
     .catch(e => e);
@@ -63,7 +60,8 @@ const getCountryById = (id) => {
     .catch(e => e);
 }
 
-const orderByContinent = () => {
+// orderCountryByName***
+const orderByName = () => {
     return Country.findAll({
             attributes: ['id', 'name'],
             // order: ['name', 'ASC']
@@ -102,5 +100,5 @@ module.exports = {
     getAllDbCountries,
     getCountriesByName,
     getCountryById,
-    orderByContinent,
+    orderByName,
 };

@@ -28,7 +28,7 @@ router.post('/', (req, res, next) => {
         .then(msg => res.status(200).json(msg))
         .catch(e => next(e));
     } else {
-        res.json({msg: 'Debe proporcionar los datos solicitados'});
+        res.json('Debe proporcionar los datos solicitados');
     }
 });
 

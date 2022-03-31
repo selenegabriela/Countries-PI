@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     }, 
     difficulty: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
     duration: {
       type: DataTypes.STRING,

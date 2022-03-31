@@ -41,7 +41,7 @@ export const getCountriesByName = (name) => {
 
 export const countriesActivities = () => {
     return function(dispatch){
-        return axios.get('http://localhost:3001/api/countries/activitiesCountry')
+        return axios.get('http://localhost:3001/api/countries/countriesActivity')
         .then(countries => dispatch({type: COUNTRIES_ACTIVITIES, payload: countries.data}))
     }
 }

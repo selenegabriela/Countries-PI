@@ -12,11 +12,11 @@ export default function Paginator(){
     const dispatch = useDispatch();
     const allCountries = useSelector(state => state.countries);
 
-    const [ flagRender, setFlagRender ] = useState(1);
-    const [ page, setPage ] = useState(1); 
+    const [ flagRender, setFlagRender ] = useState(1); // Filter
+    const [ page, setPage ] = useState(1); //2
     const [ countriesPerPage ] = useState(10);
-    const indexEnd = page === 1 ? 9 : (page * countriesPerPage) - 1; 
-    const indexStart = page === 1 ? 0 : indexEnd - countriesPerPage; 
+    const indexEnd = page === 1 ? 9 : (page * countriesPerPage) - 1; // 9  // 19
+    const indexStart = page === 1 ? 0 : indexEnd - countriesPerPage; //0   //9
     const currentCountries = (typeof allCountries !== 'string') ? allCountries.slice(indexStart, indexEnd) : allCountries;
 
 
@@ -39,7 +39,7 @@ export default function Paginator(){
                     <Filter flagRender={flagRender} changeFlagRender={changeFlagRender} setPageNumber={setPageNumber} />
                 }          
                 {
-                    <SearchBar />
+                    <SearchBar setPageNumber={setPageNumber}/>
                 }
             </div>
             {

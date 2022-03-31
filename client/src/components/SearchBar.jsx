@@ -3,7 +3,9 @@ import { useDispatch } from 'react-redux';
 import { getCountriesByName } from '../actions';
 import s from './SearchBar.module.css'
 
-export default function SearchBar(){
+export default function SearchBar(props){
+
+    const { setPageNumber } = props;
 
     const [ name, setName ] = useState('');
     const dispatch = useDispatch();
@@ -15,7 +17,8 @@ export default function SearchBar(){
 
     const hancleClick = (e) => {
         e.preventDefault();
-        dispatch(getCountriesByName(name))
+        dispatch(getCountriesByName(name));
+        setPageNumber(1);
         setName('');
     }
 

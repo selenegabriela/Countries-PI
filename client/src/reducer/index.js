@@ -109,7 +109,7 @@ export default function rootReducer(state = initialState, action){
                 detail: action.payload,
             }
         default:
-            console.log('heydef')
+            
             return {...state}
     }
 }

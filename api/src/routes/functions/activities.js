@@ -4,9 +4,13 @@ const { getCountryById } = require('../functions/countries')
 const postActivity = (body) => {
     const { name, difficulty, duration, season, idCountry} = 
     body; 
+    const uniqueIdCountries = new Set(idCountry);
+    const arrId = [...uniqueIdCountries]
+    console.log(arrId);
+    const newName = name.slice(0,1).toUpperCase() + name.slice(1).toLowerCase();
     return Activity.findOrCreate({
         where: {
-            name: name.toLowerCase(),
+            name: newName
         },
         defaults: {
 
@@ -17,7 +21,7 @@ const postActivity = (body) => {
     })
     .then(activity => {
         
-        return activity[0].addCountry(idCountry)
+        return activity[0].addCountry(arrId)
         .then(() => 'Actividad creada correctamente')
         .catch(e => e);
     })

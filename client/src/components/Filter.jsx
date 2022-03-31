@@ -31,10 +31,12 @@ export default function Filter(props){
     }
     const handleContinentSelect = (e) => {
         e.preventDefault();
+        setPageNumber(1);
         dispatch(continentFilter(e.target.value))
     }
     const handleActivitiesSelect = (e) => {
         e.preventDefault();
+        setPageNumber(1);
         dispatch(activitiesFilter(e.target.value))
     }
 

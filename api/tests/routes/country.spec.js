@@ -5,10 +5,13 @@ const app = require('../../src/app.js');
 const { Country, Activity, conn } = require('../../src/db.js');
 
 const agent = session(app);
-const activity = {
+const newCountry = {
   
-  name: 'Senderismo',
-  idCountry: 'VEN'
+  name: 'Inventado',
+  continent: 'Americas',
+  capital: 'inventada',
+  image: '#',
+  id: 'INV'
 };
 
 describe('Country routes', () => {
@@ -17,7 +20,7 @@ describe('Country routes', () => {
     console.error('Unable to connect to the database:', err);
   }));
   beforeEach(() => Country.sync({ force: true })
-    .then(() => Activity.create(activity)));
+    .then(() => Country.create(newCountry)));
   describe('GET api/countries', () => {
     it('should get 200', () =>
       agent.get('/api/countries').expect(200)

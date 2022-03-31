@@ -19,12 +19,13 @@ export default function CreateActivity(){
         difficulty: '',
         duration: '',
         season: '',
-        idCountry: []
+        idCountry: [],
     });
     const [ errors, setErrors ] = useState({});
 
     const dispatch = useDispatch();
     const allCountries = useSelector(state => state.orderedCountries);
+    const activities = useSelector(state => state.activities);
     
     // console.log(allCountries)
 
@@ -59,21 +60,28 @@ export default function CreateActivity(){
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-
+        dispatch(getAllActivities());
         if(errors.name || errors.idCountry) {
-            alert('Debe llenar y/o seleccionar todos los campos')
+            
+            alert('Debe llenar y/o seleccionar todos los campos.')
         } else {
-
-            dispatch(createNewActivity(input));
-            setInput({
-                name: '',
-                difficulty: '',
-                duration: '',
-                season: '',
-                idCountry: []
-            });
-            dispatch(getAllActivities());
-            alert('La actividad se creó correctamente.');
+            const found = Array.isArray(activities) ? activities.some(activity => activity.name.toLowerCase() === input.name.toLowerCase()) : false;
+            
+            if(found){
+                alert('Ya existe una actrividad con ese nombre.');
+            } else {
+                
+                dispatch(createNewActivity(input));
+                setInput({
+                    name: '',
+                    difficulty: '',
+                    duration: '',
+                    season: '',
+                    idCountry: []
+                });
+                dispatch(getAllActivities());
+                alert('La actividad se creó correctamente.');
+            }
         }
     }
 
@@ -139,8 +147,8 @@ export default function CreateActivity(){
                     <div className={s.divBtn}>
                         <div className={s.labelBtn}>
                             {
-                                input.idCountry.length ? input.idCountry.map(country => {
-                                    return <label className={s.labelPaises} key={country}>{country}<button className={s.btnEliminar} value={country} onClick={e => deleteCountry(e)}>X</button></label> 
+                                input.idCountry.length ? input.idCountry.map((country, i) => {
+                                    return <label className={s.labelPaises} key={i}>{country}<button className={s.btnEliminar} value={country} onClick={e => deleteCountry(e)}>X</button></label> 
                                 }) : ''
                             }
                         </div>
