@@ -5,6 +5,7 @@ const {
     postActivity,
     addActivity,
     getAllActivities,
+    deleteRelationActivity,
 } = require('./functions/activities');
 
 router.get('/', (req, res, next) => {
@@ -31,5 +32,16 @@ router.post('/', (req, res, next) => {
         res.json('Debe proporcionar los datos solicitados');
     }
 });
+router.delete('/', (req, res, next) => {
+    const { idCountry, idActivity } = req.body;
+    console.log(idCountry, idActivity);
+    if(idCountry && idActivity){
+        deleteRelationActivity(req.body)
+        .then(msg => res.json(msg))
+        .catch(e => next(e));
+    } else {
+        res.json('Debe proporcionar la actividad a borrar y el país.');
+    }
+})
 
 module.exports = router;

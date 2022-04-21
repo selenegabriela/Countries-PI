@@ -43,9 +43,21 @@ const getAllActivities = () => {
     .catch(e => e)
 }
 
+const deleteRelationActivity = (body) => {
+    const { idCountry, idActivity } = body;
+    console.log(idCountry, idActivity);
+    return getCountryById(idCountry)
+    .then(country => {
+        return country.removeActivity(idActivity)
+        .then(() => 'Actividad eliminada con éxito')
+        .catch(e => e)
+    })
+}
+
 
 module.exports = {
     postActivity,
     addActivity,
     getAllActivities,
+    deleteRelationActivity,
 };
