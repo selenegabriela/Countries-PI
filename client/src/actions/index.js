@@ -9,6 +9,7 @@ export const ACTIVITIES_FILTER = 'ACTIVITIES_FILTER';
 export const COUNTRIES_ACTIVITIES = 'COUNTRIES_ACTIVITIES';
 export const CREATE_ACTIVITY = 'CREATE_ACTIVITY';
 export const GET_COUNTRY_BY_ID = 'GET_COUNTRY_BY_ID';
+export const DELETE_RELATION_ACTIVITY = 'DELETE_RELATION_ACTIVITY';
 
 export const getAllCountries = () => {
     return function(dispatch){
@@ -72,5 +73,12 @@ export const getCountryById = id => {
     return function(dispatch){
         return axios.get(`http://localhost:3001/api/countries/${id}`)
         .then(country => dispatch({type: GET_COUNTRY_BY_ID, payload: country.data}));
+    }
+}
+
+export const deleteRelationActivity = payload => {
+    return function(dispatch){
+        return axios.delete('http://localhost:3001/api/activity/', {data: payload})
+        .then(msg => dispatch({type: DELETE_RELATION_ACTIVITY, payload: msg.data}));
     }
 }

@@ -7,7 +7,7 @@ import s from './CreateActivity.module.css';
 function validate(input){
     const errors = {};
     if(input.name.length < 3) errors.name = 'El nombre debe tener al menos 3 caracteres.';
-    if(!input.idCountry.length) errors.idCountry = 'Debe seleccionar al menos un país';
+    if(!input.idCountry.length) errors.idCountry = 'Debe seleccionar al menos un país.';
     return errors;
 }
 
@@ -38,14 +38,17 @@ export default function CreateActivity(){
     const handleChange = (e) => {
         e.preventDefault();
         if(e.target.name === "idCountry") {
-            setInput({
-                ...input,
-                idCountry: [...input.idCountry, e.target.value]
-            })
-            setErrors(validate({
-                ...input,
-                [e.target.name]: [...input.idCountry, e.target.value]
-            })) 
+            const found = input.idCountry.some(id => e.target.value === id);
+            if(!found){
+                setInput({
+                    ...input,
+                    idCountry: [...input.idCountry, e.target.value]
+                })
+                setErrors(validate({
+                    ...input,
+                    [e.target.name]: [...input.idCountry, e.target.value]
+                })) 
+            }
         } else {
             setInput({
                 ...input,

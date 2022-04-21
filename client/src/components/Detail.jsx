@@ -3,6 +3,7 @@ import { getCountryById } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { createNewActivity } from "../actions";
+import { deleteRelationActivity } from "../actions";
 import s from './Detail.module.css'
 
 
@@ -33,6 +34,14 @@ export default function Detail(){
             idCountry: id,
             idActivity: e.target.value,
         })
+    }
+
+    const handleOnClick = (e) => {
+        e.preventDefault();
+        dispatch(deleteRelationActivity({idActivity: e.target.value, idCountry: id}));
+        setRender(render+1);
+        alert('Actividad eliminada correctamente');
+        console.log(e.target.value, id)
     }
     const handleOnSubmit = (e) => {
         e.preventDefault();
@@ -72,7 +81,7 @@ export default function Detail(){
                         <h4 className={s.fuente}>Continente: {country.continent}</h4>
                         <h4 className={s.fuente}>Capital: {country.capital}</h4>
                         <h4 className={s.fuente}>Subregión: {country.subregion}</h4>
-                        <h4 className={s.fuente}>Área: {country.area}</h4>
+                        <h4 className={s.fuente}>Área: {country.area} km2</h4>
                         <h4 className={s.fuente}>Población: {country.population}</h4>
                         <h4 className={s.fuente}>Id: {country.id}</h4>
                     </div>
@@ -83,6 +92,7 @@ export default function Detail(){
                 {
                     country.activities && country.activities.map(activity => {
                         return <div className={s.actividad} key={activity.id}>
+                            <button className={s.delete} value={activity.id} onClick={e => handleOnClick(e)}>X</button>
                             <h4 className={s.fuenteActividad}>Actividad: {activity.name}</h4>
                             <h4 className={s.fuenteActividad}>Dificultad: {activity.difficulty}</h4>
                             <h4 className={s.fuenteActividad}>Duración: {activity.duration}</h4>

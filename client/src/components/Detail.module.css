@@ -88,6 +88,26 @@
     margin-left: 30px;
 }
 .fuenteActividad {
+    margin-top: 10px;
     font-size: 18px;
     color: var(--white);
+}
+.delete {
+    
+    font-weight: bold;
+    font-size: 17px;
+    color: var(--white);
+    background-color: var(--red);
+    border-radius: 5px;
+    border-style: none;
+    display: block;
+    margin-left: 165px;
+    margin-top: 10px;
+}
+.delete:hover {
+    cursor: pointer;
+}
+.align {
+    /* display: flex;
+    justify-content: end; */
 }
