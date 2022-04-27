@@ -13,7 +13,7 @@ export const DELETE_RELATION_ACTIVITY = 'DELETE_RELATION_ACTIVITY';
 
 export const getAllCountries = () => {
     return function(dispatch){
-        return axios.get('http://localhost:3001/api/countries')
+        return axios.get('/countries')
         .then(countries => {
             return dispatch({type: GET_ALL_COUNTRIES, payload: countries.data });
         });
@@ -22,7 +22,7 @@ export const getAllCountries = () => {
 
 export const getAllActivities = () => {
     return function(dispatch){
-        return axios.get('http://localhost:3001/api/activity/')
+        return axios.get('/activity/')
         .then(activities => {
             return dispatch({type: GET_ALL_ACTIVITIES, payload: activities.data})
         })
@@ -32,7 +32,7 @@ export const getAllActivities = () => {
 
 export const getCountriesByName = (name) => {
     return function(dispatch){
-        return axios.get(`http://localhost:3001/api/countries?name=${name}`)
+        return axios.get(`/countries?name=${name}`)
         .then(countries => {
             return dispatch({type: GET_COUNTRIES_BY_NAME, payload: countries.data})
         })
@@ -42,7 +42,7 @@ export const getCountriesByName = (name) => {
 
 export const countriesActivities = () => {
     return function(dispatch){
-        return axios.get('http://localhost:3001/api/countries/countriesActivity')
+        return axios.get('/countries/countriesActivity')
         .then(countries => dispatch({type: COUNTRIES_ACTIVITIES, payload: countries.data}))
     }
 }
@@ -64,21 +64,21 @@ export const activitiesFilter = payload => {
 
 export const createNewActivity = payload => {
     return function(dispatch){
-        return axios.post('http://localhost:3001/api/activity/', payload)
+        return axios.post('/activity/', payload)
         .then(msg => dispatch({type: CREATE_ACTIVITY, payload: msg.data }))
     }
 }
 
 export const getCountryById = id => {
     return function(dispatch){
-        return axios.get(`http://localhost:3001/api/countries/${id}`)
+        return axios.get(`/countries/${id}`)
         .then(country => dispatch({type: GET_COUNTRY_BY_ID, payload: country.data}));
     }
 }
 
 export const deleteRelationActivity = payload => {
     return function(dispatch){
-        return axios.delete('http://localhost:3001/api/activity/', {data: payload})
+        return axios.delete('/activity/', {data: payload})
         .then(msg => dispatch({type: DELETE_RELATION_ACTIVITY, payload: msg.data}));
     }
 }
